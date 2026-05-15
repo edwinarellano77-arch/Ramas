@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initKeyboardShortcuts();
     initModal();
+    initWorkspaceCards();
 });
 
 /* ============================================
@@ -175,7 +176,6 @@ function initFilters() {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Actualizar estado activo
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -216,7 +216,6 @@ function initCopyButtons() {
                 showTooltip(btn);
                 showToast(`"${cmd}" copiado al portapapeles`);
             } catch (err) {
-                // Fallback
                 const textarea = document.createElement('textarea');
                 textarea.value = cmd;
                 textarea.style.position = 'fixed';
@@ -303,7 +302,6 @@ function openModal(command) {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Simular salida de terminal
     simulateTerminalOutput(command, outputEl);
 }
 
@@ -324,12 +322,9 @@ Repositorio listo para usar.',
 remote: Enumerating objects: 100, done.
 Receiving objects: 100% (100/100), done.
 Resolving deltas: 100% (40/40), done.',
-        'git add .': 'Changes staged for next commit.
+        'git add': 'Changes staged for next commit.
 
 Use "git status" to see what's ready.',
-        'git add index.html': '1 file changed, 45 insertions(+)
-
-Archivo preparado exitosamente.',
         'git commit': '[main a1b2c3d] Agrega navbar responsive
  2 files changed, 45 insertions(+)
  create mode 100644 navbar.js',
@@ -376,7 +371,6 @@ Historial lineal creado.',
 Commit deshecho. Los cambios se mantienen en staging (--soft).'
     };
 
-    // Buscar salida que coincida parcialmente
     let output = 'Ejecutando comando...
 
 Comando completado exitosamente.';
@@ -387,7 +381,6 @@ Comando completado exitosamente.';
         }
     }
 
-    // Efecto de escritura progresiva
     outputEl.textContent = '';
     const lines = output.split('
 ');
@@ -412,7 +405,6 @@ function initThemeToggle() {
     const toggle = document.getElementById('themeToggle');
     if (!toggle) return;
 
-    // Verificar preferencia guardada
     const savedTheme = localStorage.getItem('git-guide-theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
@@ -472,7 +464,6 @@ function initNavbarScroll() {
         lastScroll = currentScroll;
     });
 
-    // Actualizar link activo según scroll
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -500,20 +491,40 @@ function initNavbarScroll() {
    ============================================ */
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
-        // Ctrl/Cmd + K para buscar
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 searchInput.focus();
                 searchInput.select();
+                // Scroll a la sección de todos los comandos
+                const allCommandsSection = document.getElementById('todos-comandos');
+                if (allCommandsSection) {
+                    allCommandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         }
 
-        // Escape para cerrar modal
         if (e.key === 'Escape') {
             closeModal();
         }
+    });
+}
+
+/* ============================================
+   TARJETAS DEL ÁREA DE TRABAJO
+   ============================================ */
+function initWorkspaceCards() {
+    const workspaceCards = document.querySelectorAll('.workspace-card');
+
+    workspaceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.borderColor = 'var(--primary-light)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.borderColor = '';
+        });
     });
 }
 

@@ -44,7 +44,7 @@
     --transition-slow: 0.5s ease;
 }
 
-/* Modo claro (por defecto) */
+/* Modo claro */
 body.light-mode {
     --bg-primary: #fafafa;
     --bg-secondary: #ffffff;
@@ -82,7 +82,7 @@ body {
     transition: background var(--transition-normal), color var(--transition-normal);
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -313,31 +313,6 @@ body.light-mode .moon-icon { display: none; }
     max-width: 480px;
 }
 
-.hero-stats {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--primary);
-    font-family: var(--font-mono);
-}
-
-.stat-label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
 .hero-cta {
     display: flex;
     gap: 16px;
@@ -529,20 +504,237 @@ body.light-mode .moon-icon { display: none; }
 }
 
 /* ============================================
-   SECCIÓN DE BÚSQUEDA
+   ÁREA DE TRABAJO PRINCIPAL (nuevo estilo)
    ============================================ */
-.search-section {
+.workspace-section {
     position: relative;
     z-index: 1;
-    padding: 40px 6%;
-    background: var(--bg-secondary);
+    padding: 80px 6%;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
 }
 
+.workspace-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.workspace-label {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+.workspace-header h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.workspace-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.workspace-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.workspace-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+    animation: fade-in-up 0.6s ease forwards;
+    opacity: 0;
+}
+
+.workspace-card:nth-child(1) { animation-delay: 0.1s; }
+.workspace-card:nth-child(2) { animation-delay: 0.2s; }
+.workspace-card:nth-child(3) { animation-delay: 0.3s; }
+
+.workspace-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg), 0 0 60px rgba(99, 102, 241, 0.2);
+}
+
+/* Número de comando */
+.workspace-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.workspace-number {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+.workspace-card:hover .workspace-number {
+    opacity: 0.6;
+    color: var(--primary-light);
+}
+
+/* Nombre del comando en área principal */
+.workspace-command-name {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.workspace-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.workspace-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 2px 6px;
+    background: var(--bg-elevated);
+    border-radius: 4px;
+    color: var(--primary-light);
+}
+
+/* Ejemplo en área principal */
+.workspace-example {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+/* Footer de tarjeta principal */
+.workspace-footer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.workspace-tag {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.workspace-tag.primary {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-light);
+}
+
+.workspace-tag.easy {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+}
+
+/* Nota al final del área de trabajo */
+.workspace-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 800px;
+    margin: 50px auto 0;
+    padding: 24px 28px;
+    background: rgba(99, 102, 241, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+}
+
+.workspace-note svg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.workspace-note p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.workspace-note strong {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   SECCIÓN TODOS LOS COMANDOS
+   ============================================ */
+.all-commands-section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 6%;
+    background: var(--bg-primary);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Búsqueda y filtros */
 .search-container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
 }
 
 .search-box {
@@ -631,16 +823,11 @@ body.light-mode .moon-icon { display: none; }
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* ============================================
-   GRID DE COMANDOS
-   ============================================ */
+/* Grid de comandos secundarios */
 .commands-grid {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 24px;
-    padding: 60px 6%;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -650,10 +837,10 @@ body.light-mode .moon-icon { display: none; }
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 28px;
+    padding: 24px;
     transition: all var(--transition-normal);
     overflow: hidden;
-    animation: fade-in-up 0.6s ease forwards;
+    animation: fade-in-up 0.5s ease forwards;
     opacity: 0;
 }
 
@@ -669,9 +856,6 @@ body.light-mode .moon-icon { display: none; }
 .command-card:nth-child(10) { animation-delay: 0.5s; }
 .command-card:nth-child(11) { animation-delay: 0.55s; }
 .command-card:nth-child(12) { animation-delay: 0.6s; }
-.command-card:nth-child(13) { animation-delay: 0.65s; }
-.command-card:nth-child(14) { animation-delay: 0.7s; }
-.command-card:nth-child(15) { animation-delay: 0.75s; }
 
 @keyframes fade-in-up {
     from {
@@ -710,13 +894,13 @@ body.light-mode .moon-icon { display: none; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .command-tag {
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -744,8 +928,8 @@ body.light-mode .moon-icon { display: none; }
 
 .copy-btn {
     position: relative;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 1px solid var(--border-color);
     background: transparent;
@@ -764,20 +948,20 @@ body.light-mode .moon-icon { display: none; }
 }
 
 .copy-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 .copy-tooltip {
     position: absolute;
-    top: -36px;
+    top: -32px;
     left: 50%;
     transform: translateX(-50%) scale(0.8);
-    padding: 6px 12px;
+    padding: 5px 10px;
     background: var(--primary);
     color: white;
     border-radius: 6px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
@@ -792,9 +976,9 @@ body.light-mode .moon-icon { display: none; }
 
 .command-name {
     font-family: var(--font-mono);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     gap: 8px;
     align-items: baseline;
@@ -810,9 +994,9 @@ body.light-mode .moon-icon { display: none; }
 
 .command-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .command-desc code {
@@ -828,7 +1012,7 @@ body.light-mode .moon-icon { display: none; }
     background: var(--bg-elevated);
     border-radius: var(--radius-md);
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     border: 1px solid var(--border-color);
 }
 
@@ -836,13 +1020,13 @@ body.light-mode .moon-icon { display: none; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 16px;
+    padding: 8px 14px;
     background: rgba(0,0,0,0.15);
     border-bottom: 1px solid var(--border-color);
 }
 
 .example-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -850,13 +1034,13 @@ body.light-mode .moon-icon { display: none; }
 }
 
 .run-btn {
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     background: transparent;
     color: var(--primary-light);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     cursor: pointer;
     transition: all var(--transition-fast);
 }
@@ -868,10 +1052,10 @@ body.light-mode .moon-icon { display: none; }
 }
 
 .example-code {
-    padding: 16px;
+    padding: 14px;
     margin: 0;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     line-height: 1.8;
     overflow-x: auto;
     white-space: pre;
@@ -896,7 +1080,7 @@ body.light-mode .moon-icon { display: none; }
 
 .command-meta {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
@@ -904,13 +1088,13 @@ body.light-mode .moon-icon { display: none; }
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
 .meta-item svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
 }
 
 .meta-item.difficulty.easy {
@@ -1346,10 +1530,6 @@ body.light-mode .moon-icon { display: none; }
         margin-right: auto;
     }
 
-    .hero-stats {
-        justify-content: center;
-    }
-
     .hero-cta {
         justify-content: center;
     }
@@ -1361,6 +1541,10 @@ body.light-mode .moon-icon { display: none; }
 
     .floating-cards {
         display: none;
+    }
+
+    .workspace-grid {
+        grid-template-columns: 1fr;
     }
 
     .commands-grid {
@@ -1395,24 +1579,21 @@ body.light-mode .moon-icon { display: none; }
         font-size: 2.2rem;
     }
 
-    .hero-stats {
-        gap: 24px;
-    }
-
-    .stat-number {
-        font-size: 1.5rem;
-    }
-
-    .search-section,
-    .commands-grid,
+    .workspace-section,
+    .all-commands-section,
     .workflow-section,
     .author-section {
         padding-left: 4%;
         padding-right: 4%;
     }
 
+    .workspace-card,
     .command-card {
         padding: 20px;
+    }
+
+    .workspace-header h2 {
+        font-size: 1.8rem;
     }
 
     .author-card {
@@ -1436,7 +1617,8 @@ body.light-mode .moon-icon { display: none; }
     to { opacity: 1; }
 }
 
-/* Efecto de brillo en hover para tarjetas */
+/* Efecto de brillo en hover */
+.workspace-card::before,
 .command-card::before {
     content: '';
     position: absolute;
@@ -1449,6 +1631,7 @@ body.light-mode .moon-icon { display: none; }
     pointer-events: none;
 }
 
+.workspace-card:hover::before,
 .command-card:hover::before {
     left: 100%;
 }
