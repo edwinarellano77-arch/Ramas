@@ -3,28 +3,969 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía de Comandos Git</title>
+    <title>Guía de Comandos Git | Edwin Arellano</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Pr8X11gtUZDZr1qymWM6MDaSx9muzYqCTWGWJxKAaXOAbEYoI9_g_NvkjKSiBl0v7cO38gYFGuHnf1MuBpgVMJEiCJbFgi-s6RjOLcowRFsTSHnIMLXS4QnJrzTgz-a0gbjgrnm34ozdSG4YYQMBk0Q2QraeJQq038vTx7YNJ6mKuHKOZFmXEHHbcYJ7q03xCP8vGCnQXIOwleFCsXpqdGQBmGHgNQzEjMJyjjyBySmcnzvYtb8Yxfjdr0nfRwam0Q-WnHxpYfgEqo_aWe2STgCUYI2_DBBg95PAsE1J9BM642cmHc_SiXfPTQmicQa2wJvFEIeYMUCF2zV-8Y-353RXRUyKyW5HOdkarrmopukmHNAnwxMezh7u8VqJNAMx0aWSzGZHDpxCT6ARKzorNH5JTR0gq5mlcy2dVheVtUGysBKXyRaLOxLY25vZN6G_KU3n5VwOWEb1KfITVONFC5zVFdu5JoJ9Cjd9Rb_prSZqEFRZDnRz4xkyUcspt-yj2rB_FwvHUseSPbcHRtPlMhC3LAA-vYOOq91mJWAOK852i8pLk7HhJlMj9fWF6RzPeqGOo1BO8g_e9byK0dkR4UMMKq22KarB2MrPY3kFGXj8yE0gp_N0Rg23xSm5D9I03KatllP7FeD5_kZiHGZXdg" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9wcm9kLWNoYXQta2ltaS50b3MtY24tYmVpamluZy52b2xjZXMuY29tL2tpbWktZnMvb2tjL3V4M3NtaWJ1dGVrc3kvb3V0cHV0L2luZGV4Lmh0bWw_WC1Ub3MtQWxnb3JpdGhtPVRPUzQtSE1BQy1TSEEyNTYmWC1Ub3MtQ3JlZGVudGlhbD1BS0xUWVRKbE5qZ3dNalkyWkRCa05ERmlZbUk1WVdOaVpEQmxabUZtWWpJelpUQSUyZjIwMjYwNTE1JTJmY24tYmVpamluZyUyZnRvcyUyZnJlcXVlc3QmWC1Ub3MtRGF0ZT0yMDI2MDUxNVQyMzEzMjFaJlgtVG9zLUV4cGlyZXM9NTE4NDAwJlgtVG9zLVNpZ25hdHVyZT03YTgyNmZkYjQwMTAwYzY1YjdhYjQ2Y2QwYTc5YmVlNmUxNWY5NmVlMjg5MmViZGM4OTY2MGE3ZjRlMTI4OGRlJlgtVG9zLVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWF0dGFjaG1lbnQlM2IlMjBmaWxlbmFtZSUyYSUzZFVURi04JTI3JTI3aW5kZXguaHRtbA"/></head>
 <body>
-    <header>
-        <h1>Diccionario Git Interactiva</h1>
-        <p>Aprendiendo a trabajar con ramas</p>
+    <!-- Fondo animado de partículas -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <svg class="git-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="18" r="3"/>
+                <circle cx="6" cy="6" r="3"/>
+                <circle cx="18" cy="6" r="3"/>
+                <path d="M6 9v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/>
+                <path d="M12 15V9"/>
+            </svg>
+            <span>GitGuide</span>
+        </div>
+        <div class="nav-links">
+            <a href="#inicio" class="active">Inicio</a>
+            <a href="#comandos">Comandos</a>
+            <a href="#flujo">Flujo</a>
+            <a href="#autor">Autor</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Guía Interactiva para Estudiantes</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Diccionario</span>
+                <span class="title-git">Git</span>
+                <span class="title-interactive">Interactivo</span>
+            </h1>
+            <p class="hero-subtitle">
+                Aprende a dominar el control de versiones con una experiencia visual moderna, 
+                cálida y profesional diseñada para estudiantes de programación.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-label">Comandos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-label">Niveles</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="100">0</span>
+                    <span class="stat-label">% Práctico</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#comandos" class="btn btn-primary">
+                    <span>Explorar Comandos</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17l9.2-9.2M17 17V7H7"/>
+                    </svg>
+                </a>
+                <a href="#flujo" class="btn btn-secondary">Ver Flujo de Trabajo</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn-red"></span>
+                        <span class="btn-yellow"></span>
+                        <span class="btn-green"></span>
+                    </div>
+                    <span class="terminal-title">edwin@git-guide: ~/proyecto</span>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command typing" data-text="git init">git init</span>
+                    </div>
+                    <div class="terminal-output">Initialized empty Git repository in /proyecto/.git/</div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command typing" data-text="git add .">git add .</span>
+                    </div>
+                    <div class="terminal-output" style="opacity:0.6;">Preparando archivos para commit...</div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command typing" data-text="git commit -m "Primer commit""></span>
+                    </div>
+                    <div class="terminal-output" style="opacity:0.3;">[main (root-commit) a1b2c3d] Primer commit</div>
+                    <div class="terminal-cursor">|</div>
+                </div>
+            </div>
+            <div class="floating-cards">
+                <div class="float-card card-1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <span>Branching</span>
+                </div>
+                <div class="float-card card-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>Seguro</span>
+                </div>
+                <div class="float-card card-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <span>Historial</span>
+                </div>
+            </div>
+        </div>
     </header>
-    <main id="contenedor">
-        <section class="comando">
-            <h2>git init</h2>
-            <p>Inicializa un nuevo repositorio local en la carpeta actual.</p>
-        </section>
-        <section class="comando">
-            <h2>git clone</h2>
-            <p>Descarga una copia exacta de un repositorio remoto.</p>
-        </section>
-        <section class="comando">
-            <h2>git add</h2>
-            <p>Prepara los cambios (staging) para ser incluidos en el próximo commit.</p>
-        </section>
-        <!-- Aquí los estudiantes agregarán más comandos luego -->
+
+    <!-- Barra de búsqueda y filtros -->
+    <div class="search-section" id="comandos">
+        <div class="search-container">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Buscar comando... (ej: merge, branch, commit)">
+                <span class="search-shortcut">Ctrl + K</span>
+            </div>
+            <div class="filter-tags">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="basic">Básico</button>
+                <button class="filter-btn" data-filter="branch">Ramas</button>
+                <button class="filter-btn" data-filter="remote">Remoto</button>
+                <button class="filter-btn" data-filter="advanced">Avanzado</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de comandos -->
+    <main class="commands-grid" id="commandsGrid">
+        <!-- Comando: init -->
+        <article class="command-card" data-category="basic" data-command="init">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag basic">Básico</div>
+                <button class="copy-btn" data-cmd="git init" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">init</span>
+            </h2>
+            <p class="command-desc">Inicializa un nuevo repositorio local en la carpeta actual. Crea el directorio <code>.git</code> donde se almacenará todo el historial.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git init">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Crear nuevo repositorio</span>
+<span class="prompt">$</span> <span class="command-text">git init</span>
+<span class="output">Initialized empty Git repository in /mi-proyecto/.git/</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                    Primer paso
+                </span>
+                <span class="meta-item difficulty easy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Fácil
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: clone -->
+        <article class="command-card" data-category="basic remote" data-command="clone">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag basic">Básico</div>
+                <button class="copy-btn" data-cmd="git clone" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">clone</span>
+            </h2>
+            <p class="command-desc">Descarga una copia exacta de un repositorio remoto, incluyendo todo el historial, ramas y archivos.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git clone https://github.com/usuario/repo.git">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Clonar repositorio remoto</span>
+<span class="prompt">$</span> <span class="command-text">git clone https://github.com/usuario/repo.git</span>
+<span class="output">Cloning into 'repo'...
+remote: Enumerating objects: 100, done.
+Receiving objects: 100% (100/100), done.</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Descarga
+                </span>
+                <span class="meta-item difficulty easy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Fácil
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: add -->
+        <article class="command-card" data-category="basic" data-command="add">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag basic">Básico</div>
+                <button class="copy-btn" data-cmd="git add" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">add</span>
+            </h2>
+            <p class="command-desc">Prepara los cambios (staging) para ser incluidos en el próximo commit. Puedes agregar archivos individuales o todos a la vez.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git add .">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Agregar todos los cambios</span>
+<span class="prompt">$</span> <span class="command-text">git add .</span>
+
+<span class="comment"># Agregar archivo específico</span>
+<span class="prompt">$</span> <span class="command-text">git add index.html</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Staging
+                </span>
+                <span class="meta-item difficulty easy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Fácil
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: commit -->
+        <article class="command-card" data-category="basic" data-command="commit">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag basic">Básico</div>
+                <button class="copy-btn" data-cmd="git commit" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">commit</span>
+            </h2>
+            <p class="command-desc">Guarda los cambios preparados en el historial del repositorio con un mensaje descriptivo. Crea un punto de control.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git commit -m "Mensaje descriptivo"">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Commit con mensaje</span>
+<span class="prompt">$</span> <span class="command-text">git commit -m "Agrega navbar responsive"</span>
+<span class="output">[main a1b2c3d] Agrega navbar responsive
+ 2 files changed, 45 insertions(+)</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Snapshot
+                </span>
+                <span class="meta-item difficulty easy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Fácil
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: status -->
+        <article class="command-card" data-category="basic" data-command="status">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag basic">Básico</div>
+                <button class="copy-btn" data-cmd="git status" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">status</span>
+            </h2>
+            <p class="command-desc">Muestra el estado actual del repositorio: archivos modificados, en staging, sin seguimiento y la rama actual.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git status">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Ver estado del repo</span>
+<span class="prompt">$</span> <span class="command-text">git status</span>
+<span class="output">On branch main
+Changes to be committed:
+  (use "git restore --staged..." to unstage)
+        modified:   style.css</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Estado
+                </span>
+                <span class="meta-item difficulty easy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Fácil
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: branch -->
+        <article class="command-card" data-category="branch" data-command="branch">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag branch">Ramas</div>
+                <button class="copy-btn" data-cmd="git branch" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">branch</span>
+            </h2>
+            <p class="command-desc">Gestiona las ramas del repositorio. Permite listar, crear, renombrar y eliminar ramas para trabajar en paralelo.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git branch -a">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Listar todas las ramas</span>
+<span class="prompt">$</span> <span class="command-text">git branch -a</span>
+<span class="output">* main
+  feature/login
+  remotes/origin/main</span>
+
+<span class="comment"># Crear nueva rama</span>
+<span class="prompt">$</span> <span class="command-text">git branch feature/header</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="6" y1="3" x2="6" y2="15"/>
+                        <circle cx="18" cy="6" r="3"/>
+                        <circle cx="6" cy="18" r="3"/>
+                        <path d="M18 9a9 9 0 0 1-9 9"/>
+                    </svg>
+                    Ramificación
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: checkout -->
+        <article class="command-card" data-category="branch" data-command="checkout">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag branch">Ramas</div>
+                <button class="copy-btn" data-cmd="git checkout" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">checkout</span>
+            </h2>
+            <p class="command-desc">Cambia entre ramas o restaura archivos. Permite navegar por el historial y crear ramas nuevas al cambiar.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git checkout -b feature/navbar">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Cambiar a rama existente</span>
+<span class="prompt">$</span> <span class="command-text">git checkout main</span>
+
+<span class="comment"># Crear y cambiar a nueva rama</span>
+<span class="prompt">$</span> <span class="command-text">git checkout -b feature/navbar</span>
+<span class="output">Switched to a new branch 'feature/navbar'</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    Navegación
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: merge -->
+        <article class="command-card" data-category="branch" data-command="merge">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag branch">Ramas</div>
+                <button class="copy-btn" data-cmd="git merge" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">merge</span>
+            </h2>
+            <p class="command-desc">Combina el historial de dos ramas. Integra los cambios de una rama en la rama actual donde te encuentras.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git merge feature/login">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Fusionar rama feature en main</span>
+<span class="prompt">$</span> <span class="command-text">git checkout main</span>
+<span class="prompt">$</span> <span class="command-text">git merge feature/login</span>
+<span class="output">Merge made by the 'ort' strategy.
+ style.css | 10 ++++++++++
+ 1 file changed, 10 insertions(+)</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    Fusión
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: push -->
+        <article class="command-card" data-category="remote" data-command="push">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag remote">Remoto</div>
+                <button class="copy-btn" data-cmd="git push" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">push</span>
+            </h2>
+            <p class="command-desc">Sube los commits locales al repositorio remoto. Comparte tu trabajo con el equipo en GitHub, GitLab, etc.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git push origin main">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Subir cambios a remoto</span>
+<span class="prompt">$</span> <span class="command-text">git push origin main</span>
+<span class="output">Enumerating objects: 5, done.
+Writing objects: 100% (5/5), 450 bytes, done.
+To github.com:usuario/repo.git
+   a1b2c3d..e4f5g6h  main -> main</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Subir
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: pull -->
+        <article class="command-card" data-category="remote" data-command="pull">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag remote">Remoto</div>
+                <button class="copy-btn" data-cmd="git pull" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">pull</span>
+            </h2>
+            <p class="command-desc">Descarga cambios del remoto y los fusiona automáticamente. Equivalente a <code>git fetch</code> + <code>git merge</code>.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git pull origin main">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Actualizar desde remoto</span>
+<span class="prompt">$</span> <span class="command-text">git pull origin main</span>
+<span class="output">remote: Enumerating objects: 3, done.
+From github.com:usuario/repo
+ * branch            main     -> FETCH_HEAD
+Updating a1b2c3d..e4f5g6h</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Actualizar
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: log -->
+        <article class="command-card" data-category="advanced" data-command="log">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag advanced">Avanzado</div>
+                <button class="copy-btn" data-cmd="git log" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">log</span>
+            </h2>
+            <p class="command-desc">Muestra el historial de commits con información detallada. Incluye hash, autor, fecha y mensaje de cada commit.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git log --oneline --graph">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Historial gráfico compacto</span>
+<span class="prompt">$</span> <span class="command-text">git log --oneline --graph --all</span>
+<span class="output">* a1b2c3d (HEAD -> main) Agrega footer
+* b2c3d4e Corrige responsive
+* c3d4e5f Primer commit</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Historial
+                </span>
+                <span class="meta-item difficulty medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Medio
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: stash -->
+        <article class="command-card" data-category="advanced" data-command="stash">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag advanced">Avanzado</div>
+                <button class="copy-btn" data-cmd="git stash" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">stash</span>
+            </h2>
+            <p class="command-desc">Guarda cambios temporalmente sin hacer commit. Útil para cambiar de rama rápidamente sin perder trabajo.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git stash push -m "WIP: navbar"">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Guardar cambios temporalmente</span>
+<span class="prompt">$</span> <span class="command-text">git stash push -m "WIP: navbar"</span>
+<span class="output">Saved working directory and index state
+On main: WIP: navbar</span>
+
+<span class="comment"># Recuperar cambios</span>
+<span class="prompt">$</span> <span class="command-text">git stash pop</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Temporal
+                </span>
+                <span class="meta-item difficulty hard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Avanzado
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: rebase -->
+        <article class="command-card" data-category="advanced" data-command="rebase">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag advanced">Avanzado</div>
+                <button class="copy-btn" data-cmd="git rebase" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">rebase</span>
+            </h2>
+            <p class="command-desc">Reaplica commits sobre otra rama base. Crea un historial lineal y limpio, ideal para proyectos profesionales.</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git rebase main">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Rebase interactivo</span>
+<span class="prompt">$</span> <span class="command-text">git checkout feature</span>
+<span class="prompt">$</span> <span class="command-text">git rebase -i main</span>
+<span class="output">Successfully rebased and updated feature.</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="17 1 21 5 17 9"/>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                        <polyline points="7 23 3 19 7 15"/>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                    </svg>
+                    Reorganizar
+                </span>
+                <span class="meta-item difficulty hard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Avanzado
+                </span>
+            </div>
+        </article>
+
+        <!-- Comando: reset -->
+        <article class="command-card" data-category="advanced" data-command="reset">
+            <div class="card-glow"></div>
+            <div class="card-header">
+                <div class="command-tag advanced">Avanzado</div>
+                <button class="copy-btn" data-cmd="git reset" aria-label="Copiar comando">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="copy-tooltip">Copiado!</span>
+                </button>
+            </div>
+            <h2 class="command-name">
+                <span class="cmd-prefix">git</span>
+                <span class="cmd-action">reset</span>
+            </h2>
+            <p class="command-desc">Deshace cambios moviendo el HEAD. <code>--soft</code> conserva staging, <code>--hard</code> elimina todo. ¡Usar con cuidado!</p>
+            <div class="command-example">
+                <div class="example-header">
+                    <span class="example-label">Ejemplo</span>
+                    <button class="run-btn" data-cmd="git reset --soft HEAD~1">▶ Ejecutar</button>
+                </div>
+                <pre class="example-code"><code><span class="comment"># Deshacer último commit (conserva cambios)</span>
+<span class="prompt">$</span> <span class="command-text">git reset --soft HEAD~1</span>
+
+<span class="comment"># ⚠️ Eliminar commit y cambios</span>
+<span class="prompt">$</span> <span class="command-text">git reset --hard HEAD~1</span></code></pre>
+            </div>
+            <div class="command-meta">
+                <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                    Deshacer
+                </span>
+                <span class="meta-item difficulty hard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12h20"/>
+                    </svg>
+                    Avanzado
+                </span>
+            </div>
+        </article>
     </main>
+
+    <!-- Sección de Flujo de Trabajo -->
+    <section class="workflow-section" id="flujo">
+        <div class="workflow-header">
+            <h2>Flujo de Trabajo Git</h2>
+            <p>Visualiza el ciclo completo de desarrollo con Git</p>
+        </div>
+        <div class="workflow-diagram">
+            <div class="flow-step" data-step="1">
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>1. Clonar / Init</h3>
+                    <p>Obtén el código inicial</p>
+                </div>
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="flow-step" data-step="2">
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>2. Add</h3>
+                    <p>Prepara tus cambios</p>
+                </div>
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="flow-step" data-step="3">
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>3. Commit</h3>
+                    <p>Guarda el snapshot</p>
+                </div>
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="flow-step" data-step="4">
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>4. Push</h3>
+                    <p>Comparte con el equipo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del Autor -->
+    <footer class="author-section" id="autor">
+        <div class="author-card">
+            <div class="author-avatar">
+                <div class="avatar-ring"></div>
+                <div class="avatar-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="author-info">
+                <h3>Edwin Arellano</h3>
+                <p class="author-role">Estudiante de Programación</p>
+                <p class="author-desc">Apasionado por el desarrollo web y el control de versiones. 
+                Esta guía fue creada para ayudar a otros estudiantes a dominar Git con una experiencia moderna y atractiva.</p>
+                <div class="author-tags">
+                    <span class="author-tag">HTML/CSS</span>
+                    <span class="author-tag">JavaScript</span>
+                    <span class="author-tag">Git</span>
+                    <span class="author-tag">UI/UX</span>
+                </div>
+                <div class="author-social">
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Hecho con <span class="heart">♥</span> para la comunidad de estudiantes de programación</p>
+            <p class="footer-year">2026 — Guía Git Interactiva</p>
+        </div>
+    </footer>
+
+    <!-- Toast de notificación -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+        </div>
+        <span class="toast-message">Comando copiado al portapapeles</span>
+    </div>
+
+    <!-- Modal de simulación -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Simulación de Terminal</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-terminal" id="modalTerminal">
+                <div class="modal-line">
+                    <span class="modal-prompt">$</span>
+                    <span class="modal-command" id="modalCommand"></span>
+                </div>
+                <div class="modal-output" id="modalOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
